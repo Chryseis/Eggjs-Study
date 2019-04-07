@@ -10,33 +10,31 @@ const formUploader = new qiniu.form_up.FormUploader(config);
 const putExtra = new qiniu.form_up.PutExtra();
 
 function qiniuUploadBuffer(buffer, ext) {
-    //这里base-html是存储空间名
-    const key = `beauty/${md5(+new Date())}.${ext}`;
-    const Bucket = `chrys90:${key}`;
-    const options = {
-        scope: Bucket,
-        MimeType: 0,
-    };
-    const putPolicy = new qiniu.rs.PutPolicy(options);
-    const uploadToken = putPolicy.uploadToken(mac);
+  // 这里base-html是存储空间名
+  const key = `beauty/${md5(+new Date())}.${ext}`;
+  const Bucket = `chrys90:${key}`;
+  const options = {
+    scope: Bucket, MimeType: 0,
+  };
+  const putPolicy = new qiniu.rs.PutPolicy(options);
+  const uploadToken = putPolicy.uploadToken(mac);
 
-    return new Promise((resolve) => {
-        formUploader.put(uploadToken, key, buffer, putExtra, function (respErr,
-                                                                       respBody, respInfo) {
-            if (respErr) {
-                throw respErr;
-            }
-            if (respInfo.statusCode === 200) {
-                resolve('http://ppfiz0mdd.bkt.clouddn.com/' + respBody.key);
-            } else {
-                console.log(respInfo.statusCode);
-                console.log(respBody);
-                if (respBody.error) {
-                    console.log(respBody.error);
-                }
-            }
-        });
+  return new Promise(resolve => {
+    formUploader.put(uploadToken, key, buffer, putExtra, function(respErr, respBody, respInfo) {
+      if (respErr) {
+        throw respErr;
+      }
+      if (respInfo.statusCode === 200) {
+        resolve('http://ppfiz0mdd.bkt.clouddn.com/' + respBody.key);
+      } else {
+        console.log(respInfo.statusCode);
+        console.log(respBody);
+        if (respBody.error) {
+          console.log(respBody.error);
+        }
+      }
     });
+  });
 }
 
 module.exports = qiniuUploadBuffer;
