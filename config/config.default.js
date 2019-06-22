@@ -20,6 +20,14 @@ module.exports = appInfo => {
         },
     }
 
+    /**
+     * Qiniu Config
+     * */
+    config.qiniu = {
+        accessKey: 'KlyDLBozrI-MpaN-tPIRwtVBexxjS9Ajkv5aTAYP',
+        secretKey: 'n5j85oGmDTJpe-FH3GHy8tBU_HJHImCLPblUOaQq'
+    }
+
 
     return config
 }
