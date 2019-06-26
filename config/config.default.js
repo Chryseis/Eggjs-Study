@@ -6,7 +6,8 @@ module.exports = appInfo => {
         security: {
             csrf: {
                 enable: false
-            }
+            },
+            domainWhiteList: ['*']
         }
     }
 
@@ -25,7 +26,24 @@ module.exports = appInfo => {
      * */
     config.qiniu = {
         accessKey: 'KlyDLBozrI-MpaN-tPIRwtVBexxjS9Ajkv5aTAYP',
-        secretKey: 'n5j85oGmDTJpe-FH3GHy8tBU_HJHImCLPblUOaQq'
+        secretKey: 'n5j85oGmDTJpe-FH3GHy8tBU_HJHImCLPblUOaQq',
+        bucket: 'beauty',
+        host: 'http://cdn.chryseis.cn'
+    }
+
+    /**
+     * Cors
+     * */
+    config.cors = {
+        origin: '*',
+        allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATH'
+    }
+
+    /**
+     * Logger
+     * */
+    config.logger = {
+        level: 'DEBUG'
     }
 
 

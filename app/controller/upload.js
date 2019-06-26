@@ -9,7 +9,6 @@ class UploadController extends Controller {
         const {ctx} = this;
         const {imgUrl} = ctx.request.body;
         const result = await ctx.curl(decodeURIComponent(imgUrl));
-
         const ext = result.headers['content-type'].replace('image/', '');
         const buffer = result.data;
 
