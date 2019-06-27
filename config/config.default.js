@@ -43,7 +43,8 @@ module.exports = appInfo => {
      * Logger
      * */
     config.logger = {
-        level: 'DEBUG'
+        level: 'INFO',
+        disableConsoleAfterReady: false
     }
 
 
